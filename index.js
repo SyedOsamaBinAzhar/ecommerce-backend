@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const { connection } = require('./mongoose');
-
+const userRoute = require("./routes/user");
 
 const app = express();
-
 dotenv.config();
 
+//to consume json of req body
+app.use(express.json())
+app.use("/api/users", userRoute);
 
 
 connection();
