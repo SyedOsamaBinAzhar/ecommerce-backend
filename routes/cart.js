@@ -3,7 +3,7 @@ const controller = require("../controllers/CartController");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization} = require("./verifyToken");
 
 //Create Product
-router.post("/", verifyToken, controller.createProduct)
+router.post("/", verifyToken, controller.createCart)
 
 //update cart
 router.put("/:id", verifyTokenAndAuthorization, controller.updateCart)
