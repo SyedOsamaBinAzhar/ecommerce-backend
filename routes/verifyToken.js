@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
 
-    console.log("verify token")
     const token = req.header('token');
 
     //if there is not token in req header
@@ -28,12 +27,9 @@ const verifyToken = (req, res, next) => {
 }
 
 const verifyTokenAndAuthorization = (req, res, next) => {
-    console.log("verifyTokenAndAuthorization")
 
     verifyToken(req, res, () => {
-        console.log("verifyToken call back")
-        console.log(req.user.id)
-            console.log(req.params.id)
+        //req.user.id -> from req.user = user;
         if (req.user.id === req.params.id || req.user.isAdmin) {
             
             next();
@@ -43,7 +39,22 @@ const verifyTokenAndAuthorization = (req, res, next) => {
     })
 }
 
+const verifyTokenAndAdmin = (req, res, next) => {
+
+    verifyToken(req, res, () => {
+        //req.user.id -> from req.user = user;
+        if (req.user.isAdmin) {
+
+            next();
+
+        } else {
+            res.status(403).json("You are not allowed to do this.")
+        }
+    })
+}
+
 module.exports = {
     verifyToken,
-    verifyTokenAndAuthorization
+    verifyTokenAndAuthorization,
+    verifyTokenAndAdmin
 }
