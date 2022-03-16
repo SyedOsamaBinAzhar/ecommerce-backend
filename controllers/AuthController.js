@@ -1,11 +1,10 @@
-//importing model
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 
 const jwt = require("jsonwebtoken");
 
-//REGISTER USER
 module.exports = {
+    //REGISTER USER
     post: async (req, res) => {
 
         const user = new User({
@@ -23,6 +22,7 @@ module.exports = {
             res.status(501).json(err);
         }
     },
+    //LOGIN USER
     login: async (req, res) => {
 
         try {

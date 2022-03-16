@@ -11,7 +11,7 @@ dotenv.config();
 
 //to consume json of req body
 app.use(express.json())
-// app.use("/api/users", userRoute);
+app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 
 
@@ -23,6 +23,3 @@ app.listen(process.env.PORT || 5000, () => {
 })
 
 
-//password
-// osamaazhar
-//osama12345
